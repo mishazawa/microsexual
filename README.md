@@ -1,9 +1,9 @@
 ### Deps
 
-(https://github.com/ABelliqueux/nolibgs_hello_worlds#linux)[SDK]
+[SDK](https://github.com/ABelliqueux/nolibgs_hello_worlds#linux)
 
 ### Start
 
-(https://psx.arthus.net/starting.html)[Here]
+[Here](https://psx.arthus.net/starting.html)
 
-(https://ps1.consoledev.net/)[Links]
+[Links](https://ps1.consoledev.net/)
