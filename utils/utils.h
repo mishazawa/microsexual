@@ -1,13 +1,26 @@
 #define RUNNING 1
+#define OTLEN 8
+#define BUFFERSNUM 2
 
-DISPENV EnvDisp[2];
-DRAWENV EnvDraw[2];
+#define SCREEN_WIDTH 320
+#define SCREEN_HEIGHT 240
+
+DISPENV EnvDisp[BUFFERSNUM];
+DRAWENV EnvDraw[BUFFERSNUM];
+u_long  OrderingTable[BUFFERSNUM][OTLEN];    // Ordering table length
 
 int buffer = 0;
 
 int SwapBuffer () {
   buffer = !buffer;
   return buffer;
+}
+
+void ClearOrderingTable () {
+  ClearOTagR(OrderingTable[buffer], OTLEN);
+}
+void AddPrimToOrderingTable(TILE * tile) {
+  addPrim(OrderingTable[buffer], tile);
 }
 
 void InitGraphics () {
@@ -30,7 +43,9 @@ void InitGraphics () {
 
 }
 
-void DisplayGraphics (void (*f)()) {
+int DisplayGraphics (void (*DRAWFUNC)()) {
+  DRAWFUNC();
+
   DrawSync(0);
   VSync(0);
 
@@ -38,6 +53,9 @@ void DisplayGraphics (void (*f)()) {
 
   PutDispEnv(&EnvDisp[buffer]);
   PutDrawEnv(&EnvDraw[buffer]);
-
   SetDispMask(1);
+
+  DrawOTag(OrderingTable[buffer]+OTLEN-1);
+
+  return buffer;
 }

@@ -3,3 +3,7 @@ thirdparty/
 *.cue
 *.bin
 *.o
+*.dep
+*.elf
+*.map
+*.ps-exe
