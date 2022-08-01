@@ -1,0 +1,5 @@
+psyq/
+thirdparty/
+*.cue
+*.bin
+*.o
